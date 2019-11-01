@@ -34,7 +34,7 @@ var GlobalAttackHandler;
 // docs: https://photonstorm.github.io/phaser3-docs/Phaser.Scene.html
 function preload ()
 {
-    this.load.setBaseURL('http://127.0.0.1/javascript/game/');
+    this.load.setBaseURL('http://127.0.0.1/game/');
 
     // initializing some stuffs idk any collective name
     controller1 = new PlayerOneInput();
@@ -43,9 +43,52 @@ function preload ()
     // loading stage
     this.load.image("achterground", "sprites/backgrond.png");
     this.load.image("stage", "sprites/stage.png");
+
     // loading characters
-    player1 = new Monke(this, 300, 50);
-    player2 = new Orang(this, 500, 50);
+    // url params will be used here to load data that was sent by the character select page.
+    var params = new URLSearchParams(window.location.search);
+
+    switch(params.get('player1'))
+    {
+        default:
+        case 'monke':
+            player1 = new Monke(this, 300, 50);
+        break;
+
+        case 'doittoem':
+            player1 = new DoItToEm(this, 300, 50);
+        break;
+        case 'mememan':
+            player1 = new MemeMan(this, 300, 50);
+        break;
+        case 'orang':
+            player1 = new Orang(this, 300, 50);
+        break;
+        case 'sandbag':
+            player1 = new Sandbag(this, 300, 50);
+        break;
+    }
+
+    switch(params.get('player2'))
+    {
+        default:
+        case 'monke':
+            player2 = new Monke(this, 500, 50);
+        break;
+
+        case 'doittoem':
+            player2 = new DoItToEm(this, 500, 50);
+        break;
+        case 'mememan':
+            player2 = new MemeMan(this, 500, 50);
+        break;
+        case 'orang':
+            player2 = new Orang(this, 500, 50);
+        break;
+        case 'sandbag':
+            player2 = new Sandbag(this, 500, 50);
+        break;
+    }
 
     var players = new Array();
     players.push(player1);
@@ -93,4 +136,16 @@ function update ()
 
     statustext.text = "Player 1: lives[" + player1.lives + "] health[" + player1.health + "]\n"
                     + "Player 2: lives[" + player2.lives + "] health[" + player2.health + "]\n";
+
+    if(player1.lives < 0)
+    {
+        alert("congratulations! player 2 won!");
+        window.location.href = "/index.html";
+    }
+    else if(player2.lives < 0)
+    {
+        alert("congratulations! player 1 won!");
+        window.location.href = "/index.html";
+    }
+    // ran out of time
 }

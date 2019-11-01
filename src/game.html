@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="initial-scale=1 user-scalable=no" />
+        <meta charset="UTF-8">
+        <title>Meme Clash</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="info">
+            <p>
+                <b>Controls</b>
+                <br>
+                Player 1: <b>W</b>: up <b>S</b>: down <b>A</b>: left <b>D</b>: right <b>E</b>: attack
+                <br>
+                Player 2: <b>I</b>: up <b>K</b>: down <b>J</b>: left <b>L</b>: right <b>O</b>: attack  
+            </p>
+        </div>
+
+        <div id="game"></div>
+            <!--
+                Ik werd er HELEMAAL gek van dat het telkens zo verschrikkelijk lang duurde om die game te laden,
+                dus heb ik de lib gewoon gedownload. hoop dat dit geen probleem is :^)
+                nu laad hij lekker snel haha nice
+            -->
+            <script src="phaser.js"></script>
+
+            <!-- additional classes / scripts -->
+            <script src="game/characters/BaseCharacter.js"></script>
+            <script src="game/characters/monke.js"></script>
+            <script src="game/characters/orang.js"></script>
+            <script src="game/characters/mememan.js"></script>
+            <script src="game/characters/doittoem.js"></script>
+            <script src="game/characters/sandbag.js"></script>
+
+            <!-- Additional classes yo -->
+            <script src="game/controllers/BaseController.js"></script>
+            <script src="game/controllers/PlayerOneInput.js"></script>
+            <script src="game/controllers/PlayerTwoInput.js"></script>
+            <script src="game/helpers/attack.js"></script>
+
+            <!-- main game loop shit stuff -->
+            <script src="game/main.js"></script>
+        </div>
+    </body>
+</html>

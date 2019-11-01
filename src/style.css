@@ -1,3 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
 #game
 {
     margin: auto;
@@ -8,3 +18,59 @@ body{
     color: white;
     background-color: black;
 }
+
+canvas{
+    margin: auto;
+    display: block;
+}
+
+#info{
+    margin: auto;
+    width: 400px;
+}
+
+#charselect
+{
+    width: 60%;
+    margin: auto;
+}
+
+#player1, #player2
+{
+    float: left;
+    width: calc(50% - 30px);
+    height: calc(80% - 30px);
+    margin: 10px;
+    border: 5px solid white;
+}
+
+#player1{
+    clear: left;
+}
+
+.playertitle{
+    width: 50%;
+    height: 100px;
+    float: left;
+    text-align: center;
+    font-size: 5em;
+}
+
+.selectablebox
+{
+    float: left;
+    border: 5px solid white;
+    margin: 5px;
+    width: calc(50% - 20px);
+    height: 100px;
+    background-size: contain;
+    background-position-x: center;
+    background-repeat: no-repeat;
+}
+
+.selectablebox:hover
+{
+    opacity: 0.5;
+    cursor: pointer;
+}
+

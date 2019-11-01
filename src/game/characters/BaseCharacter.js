@@ -7,10 +7,17 @@ class BaseCharacter{
         this.lives = 3;
         this.health = 100;
         this.attackdir = false;
-        this.attacktype = new AttackType(this.scene, "poop", "sprites/poop.png", "stinky", "sounds/stinky.ogg", 150, 0, false, true, this);
+        this.attacktype = new AttackType(this.scene, "poop", "sprites/poop.png", 150, 0, false, true, this);
+
+        this.jumpSound = null;
+        this.attackSound = null;
+        this.painSound = null;
+        this.dieSound = null;
 
         this.spawnx = x;
         this.spawny = y;
+
+        this.lastdirection = false; // last direction true == right
     }
 
     // initialization methods
@@ -32,14 +39,21 @@ class BaseCharacter{
 
     respawn()
     {
-        this.gameObject.setPosition(spawnx, spawny);
+        this.gameObject.setVelocityY(0);
+        this.gameObject.setVelocityX(0);
+        this.gameObject.setPosition(this.spawnx, this.spawny);
         this.lives--;
+        this.health = 100;
+        if(this.dieSound != null)
+        {
+            this.dieSound.play();
+        }
     }
 
     attack()
     {
         // THIS FUNCTION SHOULD BE OVERRIDDEN IN AN EXTENDED CLASS FOR CUSTOMIZED ATTACKS!!!112213123 ONE
-        this.attacktype.spawn(this.gameObject.x, this.gameObject.y);
+        this.attacktype.spawn(this.gameObject.x, this.gameObject.y, this.attackSound, this.lastdirection);
         //this.attackdir = !this.attackdir;
         //this.gameObject.setVelocityX(0);
         //this.gameObject.setVelocityY(0);
@@ -65,6 +79,19 @@ class BaseCharacter{
         {
             this.gameObject.setVelocityX(-150 + healthbonus);
         }
+
+        if(this.health < 0)
+        {
+            if(this.dieSound != null)
+            {
+                this.dieSound.play();
+            }
+            this.respawn();
+        }
+        else if(this.painSound != null)
+        {
+            this.painSound.play();
+        }
     }
 
     // update methods
@@ -77,10 +104,12 @@ class BaseCharacter{
         
         if (controller.left)
         {
+            this.lastdirection = false;
             this.gameObject.setVelocityX(this.speed * -1);
         }
         else if (controller.right)
         {
+            this.lastdirection = true;
             this.gameObject.setVelocityX(this.speed);
         }
         else if(controller.leftreleased || controller.rightreleaded)
@@ -90,6 +119,10 @@ class BaseCharacter{
 
         if(controller.attacktick)
         {
+            if(this.attackSound != null)
+            {
+                this.attackSound.play();
+            }
             this.attack();
         }
 

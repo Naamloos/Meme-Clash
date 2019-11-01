@@ -1,44 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="initial-scale=1 user-scalable=no" />
-        <meta charset="UTF-8">
-        <title>Meme Smash</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <p>
-            <b>Controls</b>
-            <br>
-            Player 1: <b>W</b>: up <b>S</b>: down <b>A</b>: left <b>D</b>: right <b>E</b>: attack
-            <br>
-            Player 2: <b>I</b>: up <b>K</b>: down <b>J</b>: left <b>L</b>: right <b>O</b>: attack  
-        </p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Meme Clash!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="charselect">
+        <div class="playertitle">Player 1</div>
+        <div class="playertitle">Player 2</div>
+        <div id="player1">
+            <div class="selectablebox" onclick="select(1, 'monke')" style="background-image: url('/game/sprites/monke.png')">
 
-        <div id="game"></div>
-            <!--
-                Ik werd er HELEMAAL gek van dat het telkens zo verschrikkelijk lang duurde om die game te laden,
-                dus heb ik de lib gewoon gedownload. hoop dat dit geen probleem is :^)
-                nu laad hij lekker snel haha nice
-            -->
-            <script src="phaser.js"></script>
+            </div>
+            <div class="selectablebox" onclick="select(1, 'mememan')" style="background-image: url('/game/sprites/mememan.png')">
 
-            <!-- additional classes / scripts -->
-            <script src="game/characters/BaseCharacter.js"></script>
-            <script src="game/characters/monke.js"></script>
-            <script src="game/characters/orang.js"></script>
-            <script src="game/characters/mememan.js"></script>
-            <script src="game/characters/doittoem.js"></script>
-            <script src="game/characters/sandbag.js"></script>
+            </div>
+            <!--<div class="selectablebox" onclick="select(1, 'sandbag')" style="background-image: url('/game/sprites/sandbag.png')">
+                sandbag has a yet unknown bug
+            </div>-->
 
-            <!-- Additional classes yo -->
-            <script src="game/controllers/BaseController.js"></script>
-            <script src="game/controllers/PlayerOneInput.js"></script>
-            <script src="game/controllers/PlayerTwoInput.js"></script>
-            <script src="game/helpers/attack.js"></script>
-
-            <!-- main game loop shit stuff -->
-            <script src="game/main.js"></script>
+            <!-- other characters will be added in the second attempt I suppose -->
         </div>
-    </body>
+        <div id="player2">
+            <div class="selectablebox" onclick="select(2, 'monke')" style="background-image: url('/game/sprites/monke.png')">
+
+            </div>
+            <div class="selectablebox" onclick="select(2, 'mememan')" style="background-image: url('/game/sprites/mememan.png')">
+
+            </div>
+            <!--<div class="selectablebox" onclick="select(2, 'sandbag')" style="background-image: url('/game/sprites/sandbag.png')">
+
+            </div>-->
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="select.js"></script>
+</body>
 </html>

@@ -1,7 +1,7 @@
 class Sandbag extends BaseCharacter{
     constructor(scene, x, y){
         super(scene, x, y);
-        this.base.load.image("sandbag", "sprites/sandbag.png");
+        this.scene.load.image("sandbag", "sprites/sandbag.png");
     }
 
     // initialization methods

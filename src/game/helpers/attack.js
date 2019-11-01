@@ -59,12 +59,10 @@ class AttackHandler
 }
 
 class AttackType{
-    constructor(scene, imagename, image, soundname, sound, yvelocity, xvelocity, frozen, projectile, parent){
+    constructor(scene, imagename, image, yvelocity, xvelocity, frozen, projectile, parent){
         this.scene = scene;
         this.imagename = imagename;
-        this.soundname = soundname;
         this.scene.load.image(imagename, image);
-        this.scene.load.audio(soundname, sound);
         this.parent = parent;
         if(!projectile) // non-projectiles despawn way faster
         {
@@ -82,12 +80,15 @@ class AttackType{
         this.attacks = new Array();
     }
 
-    spawn(x, y){
+    spawn(x, y, sound, direction){
         var gameobject = this.scene.physics.add.image(x, y, this.imagename);
-        gameobject.setVelocityX(this.xvelocity);
+        gameobject.setVelocityX(direction == true? this.xvelocity : this.xvelocity * -1);
         gameobject.setVelocityY(this.yvelocity);
 
-        this.scene.sound.add(this.soundname).play();
+        if(sound != null)
+        {
+            sound.play();
+        }
 
         gameobject.setDisplaySize(25, 25);
         GlobalAttackHandler.add(new AttackData(this.aliveseconds, gameobject, this.frozen, this.parent));
